@@ -15,6 +15,19 @@ reviewed before the deferred Fact-relation/aggregation design is activated.
 
 ## Default data flow
 
+> **No corpus ships with this repository.** The chunk sets are licensed filings
+> text and are excluded by `.gitignore`. Point `--chunks` at your own `.jsonl`,
+> or set `AICAP_DATA_DIR` to the directory holding it. A missing corpus fails
+> immediately with the path that was resolved, rather than deep inside the first
+> stage:
+>
+> ```
+> chunk set not found: .../chunks_full_v8.1.jsonl
+>   the chunk corpora are licensed filings text and are not
+>   included in this repository. Point --chunks at your own
+>   .jsonl, or set AICAP_DATA_DIR to the directory holding it.
+> ```
+
 ```text
 chunks.jsonl
   screen                     relevance screen (or seed pre-screened input)

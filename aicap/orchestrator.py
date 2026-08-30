@@ -287,6 +287,18 @@ def run(options: RunOptions) -> dict:
         raise ValueError("screen/extract/audit require --chunks or --set")
     if chunks_path:
         chunks_path = os.path.abspath(chunks_path)
+        # The chunk corpora are the licensed filings text this pipeline runs
+        # over and are not distributed with the repository, so a missing file
+        # here is the normal first-run state. Fail now with the path that was
+        # resolved, rather than deep inside read_jsonl on the first stage.
+        if _needs_chunks(selected) and not os.path.isfile(chunks_path):
+            raise FileNotFoundError(
+                f"chunk set not found: {chunks_path}\n"
+                f"  set: {options.set_id or '(from --chunks)'}\n"
+                f"  the chunk corpora are licensed filings text and are not\n"
+                f"  included in this repository. Point --chunks at your own\n"
+                f"  .jsonl, or set AICAP_DATA_DIR to the directory holding it."
+            )
 
     report: dict = {
         "pipeline": "aicap",
