@@ -1,0 +1,8 @@
+# AICapitalMap runtime dependencies.
+# Python >= 3.13 (uses modern typing / stdlib only otherwise).
+# `anthropic` serves the anthropic model profile; `openai` serves the qwen
+# profile (DashScope OpenAI-compatible endpoints); `pandas` is used by
+# offline analysis helpers only.
+anthropic>=0.40,<1.0
+openai>=1.40,<3.0
+pandas>=2.0,<3.0
